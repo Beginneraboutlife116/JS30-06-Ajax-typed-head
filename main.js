@@ -6,7 +6,7 @@ let initialListElements = ''
 const events = ['change', 'keyup']
 
 // fetch(endpoint).then(response => response.json()).then(data => console.log(data))
-//* rewrite it to async/await
+//* rewrite it by using async/await
 async function fetchData(url) {
   try {
     const data = await (await fetch(url)).json()
