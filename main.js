@@ -45,15 +45,11 @@ events.forEach(event => {
   searchBar.addEventListener(event, dom => {
     const target = dom.target.value.trim()
     suggestionList.innerHTML = ''
-    if (target === '') {
-      suggestionList.innerHTML = initialListElements
-    } else {
-      const foundArr = findKeyword(target, cities)
-      suggestionList.innerHTML = foundArr.length ? displayResult(foundArr) : `
-        <li class="suggestions__item">
-          <p>Can't find corresponding city and state name</p>
-        </li>
-      `
-    }
+    suggestionList.innerHTML = target === '' ? initialListElements : (
+      findKeyword(target, cities).length ? displayResult(findKeyword(target, cities)) : `
+      <li class="suggestions__item">
+        <p>Can't find corresponding city and state name</p>
+      </li>
+    `)
   })
 })
