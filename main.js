@@ -47,9 +47,10 @@ events.forEach(event => {
     suggestionList.innerHTML = ''
     suggestionList.innerHTML = target === '' ? initialListElements : (
       findKeyword(target, cities).length ? displayResult(findKeyword(target, cities)) : `
-      <li class="suggestions__item">
-        <p>Can't find corresponding city and state name</p>
-      </li>
-    `)
+        <li class="suggestions__item">
+          <p>Can't find corresponding city and state name</p>
+        </li>
+      `
+    )
   })
 })
