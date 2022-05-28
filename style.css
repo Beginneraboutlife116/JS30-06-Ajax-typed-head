@@ -1,1 +1,150 @@
-/* font-family: 'helvetica neue'; */
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html:focus-within {
+  scroll-behavior: smooth;
+}
+html, body {
+  height: 100%;
+}
+body {
+  line-height: calc(1em + 0.5rem);
+  text-rendering: optimizeSpeed;
+}
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+a:not([class]) {
+  -webkit-text-decoration-skip-ink: all;
+          text-decoration-skip-ink: all;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/* Using below when you use framework */
+/* #root, #__next {
+  isolation: isolate;
+} */
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  width: min(100% - 1.5rem, 75ch);
+  margin-inline: auto;
+}
+
+.m_auto {
+  margin: auto;
+}
+
+.main {
+  padding-block: 10vmin;
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.search {
+  padding-block-start: 5vmin;
+  font-size: clamp(2rem, 9vw, 2.5rem);
+}
+
+.search__wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.search__label {
+  position: absolute;
+  top: 25%;
+  transform: translateY(var(--moving-distance, 7.5rem));
+  transition:
+    transform 0.5s cubic-bezier(.96,.97,0,.98),
+    opacity 0.5s cubic-bezier(.96,.97,0,.98);
+  cursor: pointer;
+}
+
+.search__label::after {
+  content: '-';
+  position: absolute;
+  inset: 60% 52.5%;
+  transform: rotate(60deg);
+}
+
+.search__input {
+  opacity: 0;
+  display: inline-block;
+  border: .25rem solid black;
+  border-right: none;
+  outline: none;
+  transform-origin: right;
+}
+
+.search__close-button {
+  opacity: 0;
+  border: .25rem solid black;
+  outline: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.search__close-button:is(:hover, :focus) {
+  transform: translate(-5px, -5px);
+  box-shadow: 5px 5px 0 0 gray;
+}
+
+.search_moving-up {
+  --moving-distance: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.search__input_show {
+  opacity: 1;
+  width: min(75%, 25rem);
+  transition: opacity 0.5s cubic-bezier(.96,.97,0,.98);
+}
+
+.search__close-button_show {
+  opacity: 1;
+  transition: opacity 0.5s cubic-bezier(.96,.97,0,.98);
+}

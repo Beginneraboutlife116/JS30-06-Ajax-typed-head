@@ -1,7 +1,8 @@
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-const cities = []
 const searchBar = document.querySelector('#search')
 const suggestionList = document.querySelector('.suggestions')
+
+const cities = []
 let initialListElements = ''
 const events = ['change', 'keyup']
 
@@ -53,4 +54,24 @@ events.forEach(event => {
       `
     )
   })
+})
+
+const searchBarLabel = document.querySelector('.search__label')
+const searchBarButton = document.querySelector('.search__close-button')
+
+searchBarLabel.addEventListener('click', () => {
+  const target = event.target
+  console.log(target)
+  searchBarLabel.classList.add('search_moving-up')
+  searchBar.classList.add('search__input_show')
+  searchBarButton.classList.add('search__close-button_show')
+})
+
+searchBarButton.addEventListener('click', event => {
+  event.preventDefault()
+  searchBar.classList.remove('search__input_show')
+  searchBarButton.classList.remove('search__close-button_show')
+  searchBarLabel.classList.remove('search_moving-up')
+  suggestionList.innerHTML = ''
+  searchBar.value = ''
 })
