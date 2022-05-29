@@ -28,9 +28,9 @@ function displayResult(arr) {
   return arr.map(item => {
     return `
       <li class="suggestions__item">
-        <span>${item.city}</span>
-        <span>${item.state}</span>
-        <span>${item.population}</span>
+        <p class="text text_lg">${item.city}</p>
+        <p class="text text_italic">${item.state}</p>
+        <p class="stay-right-side">${item.population}</p>
       </li>
     `
   }).join('')
@@ -49,7 +49,7 @@ events.forEach(event => {
     suggestionList.innerHTML = target === '' ? initialListElements : (
       findKeyword(target, cities).length ? displayResult(findKeyword(target, cities)) : `
         <li class="suggestions__item">
-          <p>Can't find corresponding city and state name</p>
+          <p class="text text_xl">Can't find corresponding city and state name</p>
         </li>
       `
     )
