@@ -62,7 +62,7 @@ html {
 }
 
 .container {
-  width: min(100% - 1.5rem, 25rem);
+  width: min(90% - 2rem, 25rem);
   margin-inline: auto;
 }
 
