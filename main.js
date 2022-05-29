@@ -9,6 +9,11 @@ const events = ['change', 'keyup']
 
 // fetch(endpoint).then(response => response.json()).then(data => console.log(data))
 //* rewrite it by using async/await
+/**
+ * This function is rewritten fetch APi to async/await
+ * @param {string} url The rewrote fetch function for this JS30
+ * @returns Promise object
+ */
 async function fetchData(url) {
   try {
     const data = await (await fetch(url)).json()
@@ -18,6 +23,12 @@ async function fetchData(url) {
   }
 }
 
+/**
+ * This is for filtering corresponding keyword to a new array
+ * @param {string} word String that user inputs
+ * @param {array} list What we get from the beginning fetch
+ * @returns Array
+ */
 function findKeyword(word, list) {
   return list.filter(item => {
     const regExp = new RegExp(word, 'gi')
@@ -25,6 +36,12 @@ function findKeyword(word, list) {
   })
 }
 
+/**
+ * This is to show the finding result.
+ * @param {array} arr What we filter from findKeyword function
+ * @param {string} word What user inputs in
+ * @returns String for HTML template
+ */
 function displayResult(arr, word = '') {
   return arr.map(item => {
     let highlightCityName, highlightStateName
