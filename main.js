@@ -1,7 +1,8 @@
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 const searchBar = document.querySelector('#search')
 const suggestionList = document.querySelector('.suggestions')
-
+const searchBarLabel = document.querySelector('.search__label')
+const searchBarButton = document.querySelector('.search__close-button')
 const cities = []
 let initialListElements = ''
 const events = ['change', 'keyup']
@@ -36,29 +37,6 @@ function displayResult(arr) {
   }).join('')
 }
 
-fetchData(endpoint).then(data => {
-  cities.push(...data)
-  initialListElements = displayResult(cities)
-})
-
-
-events.forEach(event => {
-  searchBar.addEventListener(event, dom => {
-    const target = dom.target.value.trim()
-    suggestionList.innerHTML = ''
-    suggestionList.innerHTML = target === '' ? initialListElements : (
-      findKeyword(target, cities).length ? displayResult(findKeyword(target, cities)) : `
-        <li class="suggestions__item">
-          <p class="text text_xl">Can't find corresponding city and state name</p>
-        </li>
-      `
-    )
-  })
-})
-
-const searchBarLabel = document.querySelector('.search__label')
-const searchBarButton = document.querySelector('.search__close-button')
-
 searchBarLabel.addEventListener('click', () => {
   searchBarLabel.classList.add('search_moving-up')
   searchBar.classList.add('search__input_show')
@@ -72,4 +50,23 @@ searchBarButton.addEventListener('click', event => {
   searchBarLabel.classList.remove('search_moving-up')
   suggestionList.innerHTML = ''
   searchBar.value = ''
+})
+
+fetchData(endpoint).then(data => {
+  cities.push(...data)
+  initialListElements = displayResult(cities)
+})
+
+events.forEach(event => {
+  searchBar.addEventListener(event, dom => {
+    const target = dom.target.value.trim()
+    suggestionList.innerHTML = ''
+    suggestionList.innerHTML = target === '' ? initialListElements : (
+      findKeyword(target, cities).length ? displayResult(findKeyword(target, cities)) : `
+        <li class="suggestions__item">
+          <p class="text text_xl">Can't find corresponding city and state name</p>
+        </li>
+      `
+    )
+  })
 })
