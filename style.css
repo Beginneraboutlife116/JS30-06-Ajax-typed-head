@@ -91,6 +91,10 @@ html {
   margin-inline-start: auto;
 }
 
+.text_highlight {
+  background-color: pink;
+}
+
 .main {
   padding-block: 10vmin;
 }

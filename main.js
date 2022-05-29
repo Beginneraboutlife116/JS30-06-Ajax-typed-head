@@ -25,13 +25,19 @@ function findKeyword(word, list) {
   })
 }
 
-function displayResult(arr) {
+function displayResult(arr, word = '') {
   return arr.map(item => {
+    let highlightCityName, highlightStateName
+    if (word !== '') {
+      const regExp = new RegExp(word, 'gi')
+      highlightCityName = item.city.replace(regExp, `<mark class="text_highlight">${word}</mark>`)
+      highlightStateName = item.state.replace(regExp, `<mark class="text_highlight">${word}</mark>`)
+    }
     return `
       <li class="suggestions__item">
-        <p class="text text_lg">${item.city}</p>
-        <p class="text text_italic">${item.state}</p>
-        <p class="stay-right-side">${item.population}</p>
+        <p class="text text_lg">${highlightCityName ?? item.city}</p>
+        <p class="text text_italic">${highlightStateName ?? item.state}</p>
+        <p class="stay-right-side">${Number(item.population).toLocaleString()}</p>
       </li>
     `
   }).join('')
@@ -62,7 +68,7 @@ events.forEach(event => {
     const target = dom.target.value.trim()
     suggestionList.innerHTML = ''
     suggestionList.innerHTML = target === '' ? initialListElements : (
-      findKeyword(target, cities).length ? displayResult(findKeyword(target, cities)) : `
+      findKeyword(target, cities).length ? displayResult(findKeyword(target, cities), target) : `
         <li class="suggestions__item">
           <p class="text text_xl">Can't find corresponding city and state name</p>
         </li>
