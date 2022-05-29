@@ -70,6 +70,27 @@ html {
   margin: auto;
 }
 
+.text {
+  text-decoration: underline;
+}
+
+.text_italic {
+  font-style: italic;
+}
+
+.text_lg {
+  font-size: 1.25rem;
+}
+
+.text_xl {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.stay-right-side {
+  margin-inline-start: auto;
+}
+
 .main {
   padding-block: 10vmin;
 }
@@ -174,25 +195,4 @@ html {
 
 .suggestions__item + .suggestions__item {
   margin-block-start: 2vmin;
-}
-
-.text {
-  text-decoration: underline;
-}
-
-.text_italic {
-  font-style: italic;
-}
-
-.text_lg {
-  font-size: 1.25rem;
-}
-
-.text_xl {
-  font-size: 1.5rem;
-  line-height: 1.5;
-}
-
-.stay-right-side {
-  margin-inline-start: auto;
 }
