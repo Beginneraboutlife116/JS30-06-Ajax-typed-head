@@ -1,8 +1,8 @@
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-const searchBar = document.querySelector('#search')
+const searchBar = document.querySelector('[data-search-input]')
 const suggestionList = document.querySelector('.suggestions')
-const searchBarLabel = document.querySelector('.search__label')
-const searchBarButton = document.querySelector('.search__close-button')
+const searchBarLabel = document.querySelector('[data-search-label]')
+const searchBarButton = document.querySelector('[data-search-button]')
 const cities = []
 let initialListElements = ''
 const events = ['change', 'keyup']
@@ -61,16 +61,16 @@ function displayResult(arr, word = '') {
 }
 
 searchBarLabel.addEventListener('click', () => {
-  searchBarLabel.classList.add('search_moving-up')
-  searchBar.classList.add('search__input_show')
-  searchBarButton.classList.add('search__close-button_show')
+  searchBarLabel.dataset.searchLabel = false
+  searchBar.dataset.searchInput = true
+  searchBarButton.dataset.searchButton = true
 })
 
 searchBarButton.addEventListener('click', event => {
   event.preventDefault()
-  searchBar.classList.remove('search__input_show')
-  searchBarButton.classList.remove('search__close-button_show')
-  searchBarLabel.classList.remove('search_moving-up')
+  searchBar.dataset.searchInput = false
+  searchBarButton.dataset.searchButton = false
+  searchBarLabel.dataset.searchLabel = true
   suggestionList.innerHTML = ''
   searchBar.value = ''
 })
