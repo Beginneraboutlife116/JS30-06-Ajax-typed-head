@@ -138,6 +138,17 @@ html {
   transform: rotate(60deg);
 }
 
+.search__label::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: .75rem;
+  pointer-events: none;
+  background-image: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 80%);
+  inset: 160% 2.5%;
+  transition: transform 0.5s cubic-bezier(.96,.97,0,.98);
+}
+
 .search__input {
   opacity: 0;
   width: min(100% - 1.5rem, 25rem);
@@ -167,6 +178,10 @@ html {
   --moving-distance: 0;
   pointer-events: none;
   opacity: 0;
+}
+
+.search_moving-up::before {
+  transform: scaleY(0);
 }
 
 .search__input_show {
