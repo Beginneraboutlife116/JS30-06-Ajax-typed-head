@@ -99,6 +99,7 @@ html {
   font-size: 3rem;
   line-height: 1.2;
   text-align: center;
+  text-shadow: 5px 5px hsla(0, 0%, 50%, .5);
 }
 
 .search {
